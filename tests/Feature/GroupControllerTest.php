@@ -1,7 +1,7 @@
 <?php
 
-it('has groupcontroller page', function () {
-    $response = $this->get('/groupcontroller');
+it('should return a list of Groups', function () {
+    $response = $this->get('/api/groups');
 
-    $response->assertStatus(200);
+    $response->assertOk();
 });

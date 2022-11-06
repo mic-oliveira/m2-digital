@@ -1,7 +1,7 @@
 <?php
 
-it('has productcontroller page', function () {
-    $response = $this->get('/productcontroller');
+it('should return a list of products', function () {
+    $response = $this->get('/api/products');
 
-    $response->assertStatus(200);
+    $response->assertOk();
 });
