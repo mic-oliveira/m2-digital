@@ -1,0 +1,37 @@
+version: '3'
+services:
+  web:
+    image: aronpc/cati-php:latest-nginx
+    working_dir: /app
+    volumes:
+      - ./:/app
+    depends_on:
+      - postgres
+      - redis
+    ports:
+        - '8089:8080'
+
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: $DB_USERNAME
+      POSTGRES_PASSWORD: $DB_PASSWORD
+      POSTGRES_DB: $DB_DATABASE
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres_log
+    labels:
+      - 'traefik.enable=false'
+
+  redis:
+    image: redis
+    labels:
+      - 'traefik.enable=false'
+
+  adminer:
+    image: adminer
+    ports:
+        - '8099:8080'
+
+volumes:
+  postgres:

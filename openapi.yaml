@@ -1,0 +1,321 @@
+openapi: 3.0.0
+info:
+  title: Teste M2 Digital
+  contact: {}
+  version: '1.0'
+servers:
+  - url: http://localhost:8089/api
+    variables: {}
+
+paths:
+  "/groups":
+    get:
+      tags:
+        - Groups
+      summary: Listagem de Grupos
+      operationId: ListGroups
+      parameters:
+        - name: filter[name]
+          in: query
+          description: ''
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: teste3
+        - name: page
+          in: query
+          description: ''
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+            format: int32
+            example: 1
+        - name: per_page
+          in: query
+          description: ''
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+            format: int32
+            example: 1
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+        - url: http://localhost:8089/api
+          variables: {}
+    post:
+      tags:
+        - Groups
+      summary: Criação de Grupos
+      operationId: CreateGroups
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateGroupsRequest'
+            example:
+              name: Grupo teste
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            {
+
+            }
+      deprecated: false
+      servers:
+        - url: http://localhost:8089/api
+          variables: {}
+  /groups/{id}:
+    parameters:
+      - name: groupId
+        in: path
+        required: true
+        description: Id do grupo que será removido
+        schema:
+          type: integer
+          format: int64
+          minimum: 1
+          example: 1
+    get:
+      tags:
+        - Groups
+      summary: Busca de grupo por id
+      operationId: FindGroup
+      responses:
+        '200':
+          description: ''
+          headers: { }
+      deprecated: false
+      servers:
+        - url: http://localhost:8089/api
+          variables: { }
+    put:
+      tags:
+        - Groups
+      summary: Atualização de grupo
+      operationId: UpdateGroup
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateGroupRequest'
+            example:
+              name: Teste 2
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: { }
+      deprecated: false
+      servers:
+        - url: http://localhost:8089/api
+          variables: { }
+    delete:
+      tags:
+        - Groups
+      summary: Deleta grupo por id
+      operationId: DeleteGroup
+      responses:
+        '200':
+          description: 'Grupo deletado e retorna json do objeto removido'
+          headers: {}
+        '404':
+          description: 'Grupo não encontrado'
+          headers: {}
+      deprecated: false
+      servers:
+        - url: http://localhost:8089/api
+          variables: {}
+  # CITIES
+  "/cities":
+    get:
+      tags:
+        - City
+      summary: Listagem de Grupos
+      operationId: ListGroups
+      parameters:
+        - name: filter[name]
+          in: query
+          description: ''
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: teste3
+        - name: page
+          in: query
+          description: ''
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+            format: int32
+            example: 1
+        - name: per_page
+          in: query
+          description: ''
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+            format: int32
+            example: 1
+      responses:
+        '200':
+          description: ''
+          headers: { }
+      deprecated: false
+      servers:
+        - url: http://localhost:8089/api
+          variables: { }
+    post:
+      tags:
+        - City
+      summary: Criação de Grupos
+      operationId: CreateGroups
+      parameters: [ ]
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateGroupsRequest'
+            example:
+              name: Grupo teste
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: { }
+          content:
+            {
+
+            }
+      deprecated: false
+      servers:
+        - url: http://localhost:8089/api
+          variables: { }
+  /cities/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Id do grupo que será removido
+        schema:
+          type: integer
+          format: int64
+          minimum: 1
+          example: 1
+    get:
+      tags:
+        - City
+      summary: Busca de grupo por id
+      operationId: FindGroup
+      responses:
+        '200':
+          description: ''
+          headers: { }
+      deprecated: false
+      servers:
+        - url: http://localhost:8089/api
+          variables: { }
+    put:
+      tags:
+        - City
+      summary: Atualização de grupo
+      operationId: UpdateGroup
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateGroupRequest'
+            example:
+              name: Teste 2
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: { }
+      deprecated: false
+      servers:
+        - url: http://localhost:8089/api
+          variables: { }
+    delete:
+      tags:
+        - City
+      summary: Deleta grupo por id
+      operationId: DeleteGroup
+      responses:
+        '200':
+          description: 'Grupo deletado e retorna json do objeto removido'
+          headers: { }
+        '404':
+          description: 'Grupo não encontrado'
+          headers: { }
+      deprecated: false
+      servers:
+        - url: http://localhost:8089/api
+          variables: { }
+
+components:
+  schemas:
+    AuthRequest:
+      title: AuthRequest
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: admin@admin.com
+        password: admin
+    CreateGroupsRequest:
+      title: CreateGroupsRequest
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+      example:
+        name: Grupo teste
+    UpdateGroupRequest:
+      title: UpdateGroupRequest
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+      example:
+        name: Teste 2
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security:
+  - bearer: []
+
