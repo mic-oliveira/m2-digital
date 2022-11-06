@@ -15,11 +15,6 @@ e após copiado executar o comando:
 # Executar migrations
 `docker-compose exec web php artisan migrate:fresh --seed`
 
-## Documentação da api
-O arquivo de documentação encontra-se no arquivo M2.yml e está utlizando o formato de openApi v3. Ela também encontra-se disponível através da url: <br>
-https://mic-oliveira.github.io/m2-digital/ <br>
-Porém como o projeto encontra-se em localhost ele não enviará as respostas de API através do git pages.
-
 ## Pipeline
 Para pipeline foi utilizado o Actions do github, o arquivo de configuração encontra-se na pasta .github/workflow
 
