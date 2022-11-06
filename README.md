@@ -24,4 +24,4 @@ Porém como o projeto encontra-se em localhost ele não enviará as respostas de
 Para pipeline foi utilizado o Actions do github, o arquivo de configuração encontra-se na pasta .github/workflow
 
 ## Tratamento de exceção
-O tratamento de exceção foi realizado usando o idioma português, mantando o nome dos atributos do modelo
+O tratamento de exceção foi realizado usando o idioma português, mantendo o nome dos atributos do modelo

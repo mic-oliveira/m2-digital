@@ -24,12 +24,12 @@ it('should find a campaign', function () {
     fn() => City::factory(2)->create()
 ]);
 
-it('should return 404 when id not exists on campaigns', function () {
+it('should return 404 when id not exists on cities', function () {
     $response = $this->getJson('/api/cities/1');
     $response->assertNotFound();
 });
 
-it('should update a campaign', function () {
+it('should update a city', function () {
     $response = $this->putJson('/api/cities/1', ['name' => 'Cidade atualizada']);
     $response->assertOk();
 })->with([
@@ -43,14 +43,14 @@ it('should return unprocessed entity when name already exists on database', func
     fn() => City::factory()->state(['name' => 'Cidade atualizada'])->create()
 ]);
 
-it('should delete a campaign', function () {
+it('should delete a city', function () {
     $response = $this->deleteJson('/api/cities/1');
     $response->assertOk();
 })->with([
     fn() => City::factory()->create()
 ]);
 
-it('should return 404 on delete campaign not existent', function () {
+it('should return 404 on delete city not existent', function () {
     $response = $this->deleteJson('/api/cities/1');
     $response->assertNotFound();
 });
