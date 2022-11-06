@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1667720934">
-  <project timestamp="1667720934">
+<coverage generated="1667721869">
+  <project timestamp="1667721869">
     <file name="/home/runner/work/m2-digital/m2-digital/app/Actions/Campaign/CreateCampaign.php">
       <class name="App\Actions\Campaign\CreateCampaign" namespace="global">
         <metrics complexity="3" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="8" elements="12" coveredelements="8"/>
