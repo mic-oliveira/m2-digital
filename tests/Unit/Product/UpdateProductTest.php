@@ -1,17 +1,18 @@
 <?php
 
-use App\Actions\City\UpdateCity;
-use App\Models\Campaign;
-use App\Models\City;
+use App\Actions\Product\UpdateProduct;
+use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 uses(TestCase::class, RefreshDatabase::class);
 
-test('should update city', function ($data, City $city) {
-    $result = UpdateCity::run($data, $city);
+test('should update product', function ($data, Product $product) {
+    $result = UpdateProduct::run($data, $product);
     expect($result->name)->toBe($data['name']);
 })->with([
     ['data' => ['name' => 'Nome atualizado']],
     ['data' => ['name' => 'Nome atualizado 2']],
-])->with([fn() => City::factory()->create()]);
+])->with([fn() => Product::factory()->create()]);
+
+

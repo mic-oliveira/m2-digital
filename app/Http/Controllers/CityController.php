@@ -9,7 +9,6 @@ use App\Actions\City\UpdateCity;
 use App\Http\Requests\StoreCityRequest;
 use App\Http\Resources\CityResource;
 use App\Models\City;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class CityController extends Controller

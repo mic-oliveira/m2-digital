@@ -2,7 +2,6 @@
 
 namespace App\Actions\Group;
 
-use App\Models\City;
 use App\Models\Group;
 use Exception;
 use Illuminate\Support\Facades\DB;

@@ -10,7 +10,7 @@ it('should return a list of campaigns', function () {
     $response->assertOk();
 });
 
-it('should post to campaigns controller', function () {
+it('should create a campaigns', function () {
     $response = $this->postJson('/api/campaigns', ['name' => 'teste']);
     $response->assertCreated();
 });

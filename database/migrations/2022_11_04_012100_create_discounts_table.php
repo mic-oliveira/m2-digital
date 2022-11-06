@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->text('description')->nullable();
             $table->integer('percentage');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

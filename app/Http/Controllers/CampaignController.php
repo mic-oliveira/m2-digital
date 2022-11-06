@@ -5,12 +5,10 @@ namespace App\Http\Controllers;
 use App\Actions\Campaign\CreateCampaign;
 use App\Actions\Campaign\ListCampaign;
 use App\Actions\Campaign\UpdateCampaign;
-use App\Actions\Product\CreateProduct;
 use App\Http\Requests\StoreCampaignRequest;
 use App\Http\Requests\UpdateCampaignRequest;
 use App\Http\Resources\CampaignResource;
 use App\Models\Campaign;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class CampaignController extends Controller

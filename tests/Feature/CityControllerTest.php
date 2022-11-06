@@ -10,12 +10,12 @@ it('should return a list of cities', function () {
     $response->assertOk();
 });
 
-it('should post to campaigns controller', function () {
+it('should create a city', function () {
     $response = $this->postJson('/api/cities', ['name' => 'teste']);
     $response->assertCreated();
 });
 
-it('should find a campaign', function () {
+it('should find a city', function () {
     $response = $this->getJson('/api/cities/1');
     $response->assertOk();
     $response = $this->getJson('/api/cities/2');

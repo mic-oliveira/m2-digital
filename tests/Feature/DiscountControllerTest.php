@@ -10,7 +10,7 @@ it('should return a list of cities', function () {
     $response->assertOk();
 });
 
-it('should post to discounts controller', function () {
+it('should create a discount', function () {
     $response = $this->postJson('/api/discounts', ['name' => 'teste', 'percentage' => 50]);
     $response->assertCreated();
 });

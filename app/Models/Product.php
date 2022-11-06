@@ -6,12 +6,13 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use NumberFormatter;
-use function Pest\Laravel\get;
 
 class Product extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $table = 'products';
 
@@ -58,7 +59,7 @@ class Product extends Model
         $numberFormat = new NumberFormatter('pt-BR', NumberFormatter::CURRENCY);
         $numberFormat->setSymbol(NumberFormatter::CURRENCY_SYMBOL, '');
         $numberFormat->setPattern('###,###,###.##');
-        $formattedPrice = $numberFormat->format($this->discount_value / 100);
+        $formattedPrice = $numberFormat->format($this->discount_price);
         return Attribute::make(
             get: fn($value) => $formattedPrice,
         );

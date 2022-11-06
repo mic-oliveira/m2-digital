@@ -6,12 +6,10 @@ use App\Actions\Discount\CreateDiscount;
 use App\Actions\Discount\DeleteDiscount;
 use App\Actions\Discount\ListDiscount;
 use App\Actions\Discount\UpdateDiscount;
-use App\Actions\Product\ListProduct;
 use App\Http\Requests\StoreDiscountRequest;
 use App\Http\Requests\UpdateDiscountRequest;
 use App\Http\Resources\DiscountResource;
 use App\Models\Discount;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class DiscountController extends Controller

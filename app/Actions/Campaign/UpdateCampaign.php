@@ -21,7 +21,7 @@ class UpdateCampaign
                 return $campaign->refresh();
             }
             $campaign->groups()->detach($campaign->groups()->pluck('id')->all());
-            if (DB::table('groups_campaigns')->whereIn('groups_id', $data['groups_id'])->exists()) {
+            if (DB::table('groups_campaigns')->whereIn('group_id', $data['groups_id'])->exists()) {
                 throw new UnprocessableEntityHttpException('um elemento de groups_id já pertence a um grupo');
             }
             $campaign->groups()->sync($data['groups_id']);

@@ -14,5 +14,4 @@ test('should list campaign equal paginated size', function ($list_size, $page_si
 })->with([
     [10,10,10],
     [20,15,15],
-
 ])->with();
