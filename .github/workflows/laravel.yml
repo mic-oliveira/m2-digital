@@ -30,7 +30,6 @@ jobs:
         touch database/database.sqlite
     - name: Execute tests (Unit and Feature tests) via PestPHP
       env:
-        SESSION_DRIVER: array
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: vendor/bin/pest --coverage
