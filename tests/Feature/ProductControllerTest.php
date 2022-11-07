@@ -33,7 +33,7 @@ it('should update a product', function () {
     $response = $this->putJson('/api/products/1', ['name' => 'Grupo atualizado']);
     $response->assertOk();
 })->with([
-    fn() => Product::factory(2)->create()
+    fn() => Product::factory()->create()
 ]);
 
 it('should return unprocessed entity when name already exists on database', function () {

@@ -14,7 +14,9 @@ test('should update product', function ($data, Product $product) {
 })->with([
     ['data' => ['name' => 'Nome atualizado']],
     ['data' => ['name' => 'Nome atualizado 2']],
-])->with([fn() => Product::factory()->create()]);
+])->with([
+    fn() => Product::factory()->create()
+]);
 
 test('should update product with discount', function ($data, Product $product) {
     $result = UpdateProduct::run($data, $product);
@@ -27,7 +29,7 @@ test('should update product with discount', function ($data, Product $product) {
 ])->with([
     fn() => Product::factory()->create()
 ])->with([
-    fn() => Discount::factory(2)->create()
+    fn() => Discount::factory()->count(2)->create()
 ]);
 
 
