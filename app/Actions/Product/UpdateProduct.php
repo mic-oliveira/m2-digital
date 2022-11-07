@@ -18,7 +18,7 @@ class UpdateProduct
             if (array_key_exists('discount_id', $data)) {
                 $product->discounts()->sync($data['discount_id']);
             }
-            DB::rollBack();
+            DB::commit();
             return $product->refresh();
         } catch (\Exception $exception) {
             DB::rollBack();
