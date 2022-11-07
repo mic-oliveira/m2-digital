@@ -12,6 +12,7 @@ class UpdateProduct
 
     public function handle(array $data, Product $product)
     {
+        DB::beginTransaction();
         try {
             $product->fill($data)->save();
             if (array_key_exists('discount_id', $data)) {
