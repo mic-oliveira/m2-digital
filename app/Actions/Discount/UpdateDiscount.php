@@ -20,15 +20,11 @@ class UpdateDiscount
         DB::beginTransaction();
         try{
             $discount->fill($data)->save();
-            if (!array_key_exists('products_id', $data)) {
-                DB::commit();
-                return $discount->refresh();
+            if (array_key_exists('products_id', $data)) {
+                $discount->products()->detach($discount->products()->pluck('id')->all());
+                $discount->productsBelongToAnotherDiscount($data['products_id']);
+                $discount->products()->sync($data['products_id']);
             }
-            $discount->products()->detach($discount->products()->pluck('id')->all());
-            if (DB::table('products_discounts')->whereIn('product_id', $data['products_id'])->exists()) {
-                throw new UnprocessableEntityHttpException('um elemento de products_id já pertence a um desconto');
-            }
-            $discount->products()->sync($data['products_id']);
             DB::commit();
             return $discount->refresh();
         } catch (Exception $exception) {

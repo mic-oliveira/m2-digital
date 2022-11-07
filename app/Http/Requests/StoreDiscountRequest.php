@@ -21,12 +21,23 @@ class StoreDiscountRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => ['required', 'unique:discounts,name'],
             'percentage' => ['required', 'integer'],
-            'products_id' => [ 'array']
+            'products_id' => [ 'array'],
+            'products_id.*' => ['required', 'exists:products,id']
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            '*.required' => ':attribute é obrigatório',
+            '*.unique' => ':attribute já existe',
+            'products_id.*.not_in' => 'um elemento de products_id já pertence a um desconto',
+            'products_id.*.exists' => 'um elemento de products_id não é um produto registrado'
         ];
     }
 }

@@ -21,7 +21,8 @@ class StoreProductRequest extends FormRequest
         return [
             'name' => ['required', 'unique:products,name'],
             'description' => ['sometimes', 'required'],
-            'price' => ['required', 'numeric']
+            'price' => ['required', 'numeric'],
+            'discount_id' => ['sometimes', 'required', 'exists:discounts,id']
         ];
     }
 
@@ -30,7 +31,8 @@ class StoreProductRequest extends FormRequest
         return [
             '*.required' => ':attribute é obrigatório',
             '*.unique' => ':attribute deve ser único',
-            '*.numeric' => ':attribute dever ser um número'
+            '*.numeric' => ':attribute dever ser um número',
+            '*.exists' => 'O :attribute informado não está registrado'
         ];
     }
 }

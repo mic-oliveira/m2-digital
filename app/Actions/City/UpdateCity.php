@@ -3,6 +3,7 @@
 namespace App\Actions\City;
 
 use App\Models\City;
+use Illuminate\Support\Facades\DB;
 use Lorisleiva\Actions\Concerns\AsAction;
 
 class UpdateCity
@@ -11,7 +12,18 @@ class UpdateCity
 
     public function handle($data, City $city): City
     {
-        $city->fill($data)->save();
-        return $city->refresh();
+        DB::beginTransaction();
+        try{
+            $city->fill($data)->save();
+            if (array_key_exists('group_id', $data)) {
+                $city->groups()->sync($data['group_id']);
+            }
+            DB::commit();
+            return $city->refresh();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            throw $exception;
+        }
+
     }
 }

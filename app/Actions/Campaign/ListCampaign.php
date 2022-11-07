@@ -16,7 +16,10 @@ class ListCampaign
     public function handle(?int $per_page = 15): Paginator
     {
         return QueryBuilder::for(Campaign::class)
-            ->allowedIncludes(AllowedInclude::relationship('groups'))
+            ->allowedIncludes(
+                AllowedInclude::relationship('groups'),
+                AllowedInclude::relationship('products')
+            )
             ->allowedFilters([
                 AllowedFilter::partial('name')
             ])

@@ -21,15 +21,14 @@ class UpdateGroup
         DB::beginTransaction();
         try{
             $group->fill($data)->save();
-            if (!array_key_exists('cities_id', $data)) {
-                DB::commit();
-                return $group->refresh();
+            if (array_key_exists('cities_id', $data)) {
+                $group->cities()->detach($group->cities()->pluck('id')->all());
+                $group->citiesBelongToAnotherGroup($data['cities_id']);
+                $group->cities()->sync($data['cities_id']);
             }
-            $group->cities()->detach($group->cities()->pluck('id')->all());
-            if (DB::table('cities_groups')->whereIn('city_id', $data['cities_id'])->exists()) {
-                throw new UnprocessableEntityHttpException('um elemento de cities_id já pertence a um grupo');
+            if (array_key_exists('campaign_id', $data)) {
+                $group->campaigns()->sync($data['campaign_id']);
             }
-            $group->cities()->sync($data['cities_id']);
             DB::commit();
             return $group->refresh();
         } catch (Exception $exception) {

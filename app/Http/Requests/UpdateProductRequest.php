@@ -21,7 +21,8 @@ class UpdateProductRequest extends FormRequest
         return [
             'name' => ['sometimes', 'required', 'unique:products,name'],
             'description' => ['sometimes', 'required'],
-            'price' => ['sometimes', 'required', 'numeric']
+            'price' => ['sometimes', 'required', 'numeric'],
+            'discount_id' => ['sometimes', 'required', 'exists:discounts,id']
         ];
     }
 
@@ -30,7 +31,8 @@ class UpdateProductRequest extends FormRequest
         return [
             '*.required' => ':attribute é obrigatório',
             '*.unique' => ':attribute deve ser único',
-            '*.numeric' => ':attribute dever ser um número'
+            '*.numeric' => ':attribute dever ser um número',
+            '*.exists' => 'O :attribute informado não está registrado'
         ];
     }
 }

@@ -25,6 +25,8 @@ class ProductResource extends JsonResource
             'discount_price' => $this->discount_price,
             'discount_percent' => $this->discount_percent,
             'discount_value' => $this->discount_value / 100,
+            $this->mergeWhen($this
+                ->includes('discounts'),['discount' => DiscountResource::make($this->discounts->last())]),
             'create_at' => $this->created_at,
             'updated_at' => $this->updated_at
         ];

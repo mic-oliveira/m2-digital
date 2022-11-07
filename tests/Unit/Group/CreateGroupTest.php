@@ -1,6 +1,7 @@
 <?php
 
 use App\Actions\Group\CreateGroup;
+use App\Models\Campaign;
 use App\Models\City;
 use App\Models\Group;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -39,3 +40,13 @@ test('should throws exception when cities already belong to another group', func
 })->with([
     ['data' => ['name' => 'Grupo teste','cities_id' => [1,2,3]], 'Grupo teste'],
 ])->throws(Exception::class);
+
+test('should create a group and attach campaign to group', function ($data, $expected) {
+    $result = CreateGroup::run($data);
+    expect($result->name)->toBe($expected)
+        ->and($result->campaigns()->pluck('id')->all())->toContain($data['campaign_id']);
+})->with([
+    ['data' => ['name' => 'Grupo teste','campaign_id' => 1], 'Grupo teste'],
+])->with([
+    fn() => Campaign::factory(3)->create()
+]);

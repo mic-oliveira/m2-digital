@@ -11,12 +11,15 @@ class CampaignResource extends JsonResource
 
     public function toArray($request): array|\JsonSerializable|Arrayable
     {
+
         return [
             'id' => $this->id,
             'name' => $this->name,
             'status' => $this->status->value,
             'description' => $this->description,
-            $this->mergeWhen($this->includes('groups'), ['groups' => $this->groups]),
+            $this->mergeWhen($this->includes('groups'), ['groups' => GroupResource::collection($this->groups)]),
+            $this
+                ->mergeWhen($this->includes('products'), ['products' => ProductResource::collection($this->products)]),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

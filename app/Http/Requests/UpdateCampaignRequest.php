@@ -16,7 +16,11 @@ class UpdateCampaignRequest extends FormRequest
     {
         return [
             'name' => ['required', 'unique:campaigns,name'],
-            'status' => ['sometimes', 'required']
+            'status' => ['sometimes', 'required'],
+            'groups_id' => ['sometimes', 'array'],
+            'groups.*' => ['required', 'exists:groups,id'],
+            'products_id' => ['sometimes', 'array'],
+            'products_id.*' => ['required', 'exists:products,id']
         ];
     }
 
@@ -24,7 +28,9 @@ class UpdateCampaignRequest extends FormRequest
     {
         return [
             '*.required' => ':attribute é obrigatório',
-            '*.unique' => ':attribute já existe'
+            '*.unique' => ':attribute já existe',
+            'groups_id.exists' => 'um elemento de groups_id não é um grupo registrado',
+            'products_id.*.exists' => 'um elemento de products_id não é um produto registrado'
         ];
     }
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Actions\Campaign\CreateCampaign;
+use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -33,3 +34,15 @@ test('should not create campaign without a name', function () {
 test('should not create campaign null param', function () {
     CreateCampaign::run(null);
 })->throws(TypeError::class);
+
+test('should create campaign with products', function ($campaignData, $expected) {
+    $result = CreateCampaign::run($campaignData);
+    expect($result->name)->toBe($expected)
+        ->and($result->products()->pluck('id')->all())->toBe($campaignData['products_id']);
+
+})->with([
+    ['data' => ['name' => 'Teste', 'products_id' => [1,3]],'Teste'],
+    ['data' => ['name' => 'Teste 2', 'products_id' => [2]], 'Teste 2'],
+])->with([
+    fn() => Product::factory(3)->create()
+]);

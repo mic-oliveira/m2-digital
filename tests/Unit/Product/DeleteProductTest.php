@@ -1,12 +1,6 @@
 <?php
 
-use App\Actions\City\DeleteCity;
-use App\Actions\Discount\DeleteDiscount;
-use App\Actions\Group\DeleteGroup;
 use App\Actions\Product\DeleteProduct;
-use App\Models\City;
-use App\Models\Discount;
-use App\Models\Group;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;

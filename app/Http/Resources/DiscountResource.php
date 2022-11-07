@@ -11,6 +11,13 @@ class DiscountResource extends JsonResource
 
     public function toArray($request): array|\JsonSerializable|Arrayable
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'description' => $this->description,
+            'percentage' => $this->percentage,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at
+        ];
     }
 }

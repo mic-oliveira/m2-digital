@@ -26,8 +26,14 @@ class Campaign extends Model
         'status' => CampaignStatusEnum::class
     ];
 
+
     public function groups(): BelongsToMany
     {
         return $this->belongsToMany(Group::class, 'groups_campaigns', 'campaign_id', 'group_id');
+    }
+
+    public function products(): BelongsToMany
+    {
+        return $this->belongsToMany(Product::class, 'products_campaigns', 'campaign_id', 'product_id');
     }
 }

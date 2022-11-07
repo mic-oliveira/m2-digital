@@ -15,11 +15,9 @@ class CreateDiscount
         DB::beginTransaction();
         try {
             $discount = Discount::create($data);
-            if (!array_key_exists('products_id', $data)) {
-                DB::commit();
-                return $discount;
+            if (array_key_exists('products_id', $data)) {
+                $discount->products()->sync($data['products_id']);
             }
-            $discount->products()->sync($data['products_id']);
             DB::commit();
             return $discount->refresh();
         } catch (\Exception $exception) {

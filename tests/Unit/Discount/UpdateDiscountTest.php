@@ -23,3 +23,14 @@ test('should update products attached to discount', function ($data, Discount $d
     ['data' => ['products_id' => [1]]],
     ['data' => ['products_id' => [4]]],
 ])->with([fn() => Discount::factory()->has(Product::factory(5), 'products')->create()]);
+
+test('should not update products if alredy belong to another discount', function ($data, Discount $discount) {
+    UpdateDiscount::run($data, $discount);
+})->with([
+    ['data' => ['products_id' => [2]]],
+    ['data' => ['products_id' => [1,3]]],
+])->with([
+    fn() => Discount::factory()->has(Product::factory(1), 'products')->create()
+])->with([
+    fn() => Discount::factory()->has(Product::factory(3), 'products')->create()
+])->throws(Exception::class);

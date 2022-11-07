@@ -27,7 +27,8 @@ class UpdateGroupRequest extends FormRequest
         return [
             'name' => ['sometimes', 'required', 'unique:groups,name'],
             'cities_id' => ['array'],
-            'cities_id.*' => ['sometimes', 'exists:cities,id']
+            'cities_id.*' => ['sometimes', 'exists:cities,id'],
+            'campaign_id' => ['sometimes', 'required', 'exists:campaigns,id']
         ];
     }
 
@@ -37,7 +38,8 @@ class UpdateGroupRequest extends FormRequest
             '*.required' => ':attribute é obrigatório',
             '*.unique' => ':attribute já existe',
             '*.array' => ':attribute deve ser uma lista de ids de cidade',
-            'cities_id.*.exists' => 'um elemento de cities_id não é uma cidade registrada'
+            'cities_id.*.exists' => 'um elemento de cities_id não é uma cidade registrada',
+            'campaign_id.exists' => ':attribute não é uma campanha resgitrada'
         ];
     }
 }

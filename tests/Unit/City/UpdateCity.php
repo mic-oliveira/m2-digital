@@ -1,7 +1,6 @@
 <?php
 
 use App\Actions\City\UpdateCity;
-use App\Models\Campaign;
 use App\Models\City;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;

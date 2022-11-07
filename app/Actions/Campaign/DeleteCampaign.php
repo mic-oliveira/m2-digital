@@ -17,6 +17,7 @@ class DeleteCampaign
         }
         $campaign->delete();
         $campaign->groups()->detach($campaign->groups()->pluck('id')->all());
+        $campaign->products()->detach($campaign->products()->pluck('id')->all());
         return $campaign->refresh();
     }
 }

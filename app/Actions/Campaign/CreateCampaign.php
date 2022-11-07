@@ -19,11 +19,12 @@ class CreateCampaign
         DB::beginTransaction();
         try{
             $campaign = Campaign::create($data);
-            if (!array_key_exists('groups_id', $data)) {
-                DB::commit();
-                return $campaign->refresh();
+            if (array_key_exists('groups_id', $data)) {
+                $campaign->groups()->sync($data['groups_id']);
             }
-            $campaign->groups()->sync($data['groups_id']);
+            if (array_key_exists('products_id', $data)) {
+                $campaign->products()->sync($data['products_id']);
+            }
             DB::commit();
             return $campaign->refresh();
         } catch (Exception $exception) {
